@@ -1,11 +1,8 @@
 <?php
-
 namespace ${namespace};
 
-
-
 /**
-*  Created by codeconverter on ${date}.
+ *  Created by java2php on ${date}.
 */
 class Request extends BaseRequest{
 

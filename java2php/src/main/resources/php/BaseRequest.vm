@@ -3,8 +3,8 @@
 namespace ${namespace};
 
 /**
-*  Created by codeconverter on ${date}.
-*/
+ *  Created by java2php on ${date}.
+ */
 class BaseRequest{
 
     public $sid;
@@ -13,8 +13,8 @@ class BaseRequest{
     }
 
     /**
-    * @param string $request_id;
-    */
+     * @param string $request_id;
+     */
     function setRequestId($request_id) {
        $this->sid = $request_id;
     }

@@ -9,7 +9,7 @@ use \com\zhubajie\php\base\clientv2;
 use \com\zhubajie\php\base\clientv2\exception\InvalidParamException;
 
 /**
-*  Created by codeconverter on ${date}.
+ *  Created by java2php on ${date}.
 */
 class ${className} extends clientv2\service\Client
 {

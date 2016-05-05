@@ -8,7 +8,7 @@ use $use;
 #end##
 
 /**
-*  Created by codeconverter on ${date}.
+*  Created by java2php on ${date}.
 */
 class ${className} #if(${parent})${parent}#end {
 
@@ -37,13 +37,13 @@ if (null !== $this->${f.getName()}) {
     throw new InvalidParamException('参数类型有误');
     } else {
         $this->${f.getName()} = (array)$this->${f.getName()};
-        foreach($this->${f.getName()} as $__dto){
-            if($__dto instanceof ${f.getPhpTypeWithNoBracket()} === false) {
-            throw new InvalidParamException('参数类型有误');
-            }else {
-            $__dto->__check();
-            }
-        }
+    foreach($this->${f.getName()} as $__dto){
+    if($__dto instanceof ${f.getPhpTypeWithNoBracket()} === false) {
+    throw new InvalidParamException('参数类型有误');
+    }else {
+        $__dto->__check();
+    }
+    }
     }
     #else
     if (is_array($this->${f.getName()}) === false) {
@@ -56,52 +56,52 @@ if (null !== $this->${f.getName()}) {
 #else
 //param obj
 if (null !== $this->${f.getName()}){
- if($this->${f.getName()} instanceof ${f.getPhpTypeWithNoBracket()} === false) {
-   throw new InvalidParamException('参数类型有误');
- }else {
+if($this->${f.getName()} instanceof ${f.getPhpTypeWithNoBracket()} === false) {
+throw new InvalidParamException('参数类型有误');
+}else {
     $this->${f.getName()}->__check();
- }
+}
 }
 #end##
 ##-------------------------------------
 #else
 ##-------------------------------------
     #if(${f.getPhpTypeWithNoBracket()} == "int")##
-//param int
-if(null !== $this->${f.getName()}){
- if (ctype_digit((string)$this->${f.getName()}) === false) {
-  throw new InvalidParamException('参数类型有误');
- } else {
-  $this->${f.getName()} = (int)$this->${f.getName()};
- }
-}
+    //param int
+    if(null !== $this->${f.getName()}){
+    if (ctype_digit((string)$this->${f.getName()}) === false) {
+    throw new InvalidParamException('参数类型有误');
+    } else {
+        $this->${f.getName()} = (int)$this->${f.getName()};
+    }
+    }
     #elseif(${f.getPhpTypeWithNoBracket()} == "string")##
-//param string
-if(null !== $this->${f.getName()}){
- if (is_scalar($this->${f.getName()}) === false) {
-  throw new InvalidParamException('参数类型有误');
- } else {
-  $this->${f.getName()} = (string)$this->${f.getName()};
- }
-}
+    //param string
+    if(null !== $this->${f.getName()}){
+    if (is_scalar($this->${f.getName()}) === false) {
+    throw new InvalidParamException('参数类型有误');
+    } else {
+        $this->${f.getName()} = (string)$this->${f.getName()};
+    }
+    }
     #elseif(${f.getPhpTypeWithNoBracket()} == "float")##
-//param float | double
-if(null !== $this->${f.getName()}){
- if (is_float($this->${f.getName()}) === false) {
-  throw new InvalidParamException('参数类型有误');
- } else {
-  $this->${f.getName()} = (float)$this->${f.getName()};
- }
-}
+    //param float | double
+    if(null !== $this->${f.getName()}){
+    if (is_float($this->${f.getName()}) === false) {
+    throw new InvalidParamException('参数类型有误');
+    } else {
+        $this->${f.getName()} = (float)$this->${f.getName()};
+    }
+    }
     #elseif(${f.getPhpTypeWithNoBracket()} == "bool")##
-//param boolean
-if(null !== $this->${f.getName()}){
- if (is_bool($this->${f.getName()}) === false) {
-  throw new InvalidParamException('参数类型有误');
- } else {
-  $this->${f.getName()} = (bool)$this->${f.getName()};
- }
-}
+    //param boolean
+    if(null !== $this->${f.getName()}){
+    if (is_bool($this->${f.getName()}) === false) {
+    throw new InvalidParamException('参数类型有误');
+    } else {
+        $this->${f.getName()} = (bool)$this->${f.getName()};
+    }
+    }
     #end##
 ##-------------------------------------
 #end##
