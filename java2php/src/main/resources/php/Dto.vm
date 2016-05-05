@@ -1,0 +1,114 @@
+<?php
+
+namespace ${namespace};
+use \com\zhubajie\php\base\clientv2;
+use \com\zhubajie\php\base\clientv2\exception\InvalidParamException;
+#foreach ($use in ${uses})##
+use $use;
+#end##
+
+/**
+*  Created by codeconverter on ${date}.
+*/
+class ${className} #if(${parent})${parent}#end {
+
+    #foreach ($f in ${fields})##
+/**
+    #if(${f.getComment()})* ${f.getComment()} #end##
+    * javaType(${f.getJavaType()})
+     *
+     * @var ${f.getPhpType()}
+    */
+    public $${f.getName()};
+
+    #end##
+
+public function __check() {
+
+#foreach ($f in ${fields})##
+
+#if(!${f.isPrimitype()})##
+##-------------------------------------
+#if(${f.isPhpArray()})##
+//param array | list
+if (null !== $this->${f.getName()}) {
+    #if(${f.isPhpObjectArray()})
+    if (is_array($this->${f.getName()}) === false) {
+    throw new InvalidParamException('参数类型有误');
+    } else {
+        $this->${f.getName()} = (array)$this->${f.getName()};
+        foreach($this->${f.getName()} as $__dto){
+            if($__dto instanceof ${f.getPhpTypeWithNoBracket()} === false) {
+            throw new InvalidParamException('参数类型有误');
+            }else {
+            $__dto->__check();
+            }
+        }
+    }
+    #else
+    if (is_array($this->${f.getName()}) === false) {
+    throw new InvalidParamException('参数类型有误');
+    } else {
+        $this->${f.getName()} = (array)$this->${f.getName()};
+    }
+    #end
+}
+#else
+//param obj
+if (null !== $this->${f.getName()}){
+ if($this->${f.getName()} instanceof ${f.getPhpTypeWithNoBracket()} === false) {
+   throw new InvalidParamException('参数类型有误');
+ }else {
+    $this->${f.getName()}->__check();
+ }
+}
+#end##
+##-------------------------------------
+#else
+##-------------------------------------
+    #if(${f.getPhpTypeWithNoBracket()} == "int")##
+//param int
+if(null !== $this->${f.getName()}){
+ if (ctype_digit((string)$this->${f.getName()}) === false) {
+  throw new InvalidParamException('参数类型有误');
+ } else {
+  $this->${f.getName()} = (int)$this->${f.getName()};
+ }
+}
+    #elseif(${f.getPhpTypeWithNoBracket()} == "string")##
+//param string
+if(null !== $this->${f.getName()}){
+ if (is_scalar($this->${f.getName()}) === false) {
+  throw new InvalidParamException('参数类型有误');
+ } else {
+  $this->${f.getName()} = (string)$this->${f.getName()};
+ }
+}
+    #elseif(${f.getPhpTypeWithNoBracket()} == "float")##
+//param float | double
+if(null !== $this->${f.getName()}){
+ if (is_float($this->${f.getName()}) === false) {
+  throw new InvalidParamException('参数类型有误');
+ } else {
+  $this->${f.getName()} = (float)$this->${f.getName()};
+ }
+}
+    #elseif(${f.getPhpTypeWithNoBracket()} == "bool")##
+//param boolean
+if(null !== $this->${f.getName()}){
+ if (is_bool($this->${f.getName()}) === false) {
+  throw new InvalidParamException('参数类型有误');
+ } else {
+  $this->${f.getName()} = (bool)$this->${f.getName()};
+ }
+}
+    #end##
+##-------------------------------------
+#end##
+
+#end##
+return true;
+}
+
+}
+

@@ -1,0 +1,147 @@
+<?php
+
+namespace ${namespace};
+
+#foreach ($use in ${uses})##
+use $use;
+#end##
+use \com\zhubajie\php\base\clientv2;
+use \com\zhubajie\php\base\clientv2\exception\InvalidParamException;
+
+/**
+*  Created by codeconverter on ${date}.
+*/
+class ${className} extends clientv2\service\Client
+{
+    const CLIENT_ZK_SERVICE_KEY = '${refrence}';
+
+    /**
+     * ${className} constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct(self::CLIENT_ZK_SERVICE_KEY);
+    }
+
+#foreach ($m in ${methods})##
+/**
+* ${m.getComments()}##
+*
+* @param ${m.getParam().getKey().phpType} $${m.getParam().getKey().getName()};
+* @return mixed
+* @throws InvalidParamException
+* @throws clientv2\exception\BaseClientException
+*/
+public function ${m.getName()}(#if(!${m.getParam().getKey().isPrimitype()} && !${m.getParam().getKey().isPhpArray()})${m.getParam().getKey().getPhpTypeWithNoBracket()}#end $${m.getParam().getKey().getName()})
+{
+    #if(!${m.getParam().getKey().isRequest()})##
+        #if(${m.getParam().getKey().isPrimitype()})##
+            #if(${m.getParam().getKey().getPhpTypeWithNoBracket()} == "int")##
+                //param int
+                if (ctype_digit((string)$${m.getParam().getKey().getName()}) === false) {
+                   throw new InvalidParamException('param type error');
+                } else {
+                   $${m.getParam().getKey().getName()} = (int)$${m.getParam().getKey().getName()};
+                }
+
+            #elseif(${m.getParam().getKey().getPhpTypeWithNoBracket()} == "float")##
+                //param float
+                if (is_float($${m.getParam().getKey().getName()}) === false) {
+                  throw new InvalidParamException('param type error');
+                } else {
+                  $${m.getParam().getKey().getName()} = (float)$${m.getParam().getKey().getName()};
+                }
+            #elseif(${m.getParam().getKey().getPhpTypeWithNoBracket()} == "char")##
+
+            #elseif(${m.getParam().getKey().getPhpTypeWithNoBracket()} == "bool")##
+                //param boolean
+                if (is_bool($${m.getParam().getKey().getName()}) === false) {
+                throw new InvalidParamException('param type error');
+                } else {
+                $${m.getParam().getKey().getName()} = (bool)$${m.getParam().getKey().getName()};
+                }
+            #elseif(${m.getParam().getKey().getPhpTypeWithNoBracket()} == "string")##
+                //param string
+                if (is_scalar($${m.getParam().getKey().getName()}) === false) {
+                throw new InvalidParamException('param type error');
+                } else {
+                $${m.getParam().getKey().getName()} = (string)$${m.getParam().getKey().getName()};
+                }
+            #end##
+##        #elseif(${m.getParam().getKey().isPhpArray()})##
+##          //param array
+##          if (is_array($${m.getParam().getKey().getName()}) === false) {
+##           throw new InvalidParamException('param type error');
+##           } else {
+##           $${m.getParam().getKey().getName()} = (array) $${m.getParam().getKey().getName()};
+##           }
+        #else##
+            //param obj
+            if ($${m.getParam().getKey().name} instanceof ${m.getParam().getKey().getPhpTypeWithNoBracket()} === false) {
+            throw new InvalidParamException('param type error');
+            }
+        #end##
+    #else##
+        #if(${m.getParam().getKey().isPrimitype()})##
+            #if(${m.getParam().getKey().getPhpTypeWithNoBracket()} == "int")##
+            //param int
+            if (ctype_digit((string)$${m.getParam().getKey().getName()}) === false) {
+            throw new InvalidParamException('param type error');
+            } else {
+            $${m.getParam().getKey().getName()} = (int)$${m.getParam().getKey().getName()};
+            }
+
+            #elseif(${m.getParam().getKey().getPhpTypeWithNoBracket()} == "float")##
+            //param float
+            if (is_float($${m.getParam().getKey().getName()}) === false) {
+            throw new InvalidParamException('param type error');
+            } else {
+            $${m.getParam().getKey().getName()} = (float)$${m.getParam().getKey().getName()};
+            }
+            #elseif(${m.getParam().getKey().getPhpTypeWithNoBracket()} == "char")##
+
+            #elseif(${m.getParam().getKey().getPhpTypeWithNoBracket()} == "bool")##
+            //param boolean
+            if (is_bool($${m.getParam().getKey().getName()}) === false) {
+            throw new InvalidParamException('param type error');
+            } else {
+            $${m.getParam().getKey().getName()} = (bool)$${m.getParam().getKey().getName()};
+            }
+            #elseif(${m.getParam().getKey().getPhpTypeWithNoBracket()} == "string")##
+            //param string
+            if (is_scalar($${m.getParam().getKey().getName()}) === false) {
+            throw new InvalidParamException('param type error');
+            } else {
+            $${m.getParam().getKey().getName()} = (string)$${m.getParam().getKey().getName()};
+            }
+            #end##
+        $${m.getParam().getKey().getName()} = new \com\zhubajie\common\dto\Request($${m.getParam().getKey().getName()});
+
+        #elseif(${m.getParam().getKey().isPhpArray()})##
+        //param array
+        if (is_array($${m.getParam().getKey().getName()}) === false) {
+        throw new InvalidParamException('param type error');
+        } else {
+        $${m.getParam().getKey().getName()} = new \com\zhubajie\common\dto\Request(is_array($${m.getParam().getKey().getName()}) ? $${m.getParam().getKey().getName()} : (array) $${m.getParam().getKey().getName()});
+        }
+
+        #else##
+        //param obj
+        if ($${m.getParam().getKey().name} instanceof ${m.getParam().getKey().getPhpTypeWithNoBracket()} === false) {
+        throw new InvalidParamException('param type error');
+        }else{
+        $${m.getParam().getKey().getName()} = new \com\zhubajie\common\dto\Request(is_object($${m.getParam().getKey().getName()}) ? $${m.getParam().getKey().getName()} : (object) $${m.getParam().getKey().getName()});
+        }
+        #end##
+    #end##
+
+    $${m.getParam().getKey().getName()}->setRequestId($this->zGetRequestId());
+
+    $this_method_arguments = array($${m.getParam().getKey().getName()});
+
+return $this->issueClientCall(__FUNCTION__, $this_method_arguments);
+}
+
+#end
+
+}
