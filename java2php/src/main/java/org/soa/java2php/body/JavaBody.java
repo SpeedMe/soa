@@ -3,6 +3,14 @@ package org.soa.java2php.body;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
+import com.github.javaparser.ast.ImportDeclaration;
+import com.github.javaparser.ast.PackageDeclaration;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.EnumConstantDeclaration;
+import com.github.javaparser.ast.body.EnumDeclaration;
+import com.github.javaparser.ast.body.FieldDeclaration;
+import com.github.javaparser.ast.body.MethodDeclaration;
+
 import java.util.List;
 import java.util.Set;
 
@@ -13,36 +21,117 @@ import java.util.Set;
  * @date: 2016-05-06 11:13 AM
  */
 public class JavaBody {
-  //包名
-  public String packageName;
-
   //是否为接口
-  public boolean isInterfazz;
+  private boolean isInterface;
 
   //是否Enum
-  public boolean isEnum;
+  private boolean isEnum;
 
-  //类名
-  public String className;
+  //enum 常量
+  private EnumConstantDeclaration enumConstantDec;
 
-  //类注释
-  public String comments;
+  //enum
+  private EnumDeclaration enumDec;
 
-  //引入类
-  public Set<String> imports = Sets.newConcurrentHashSet();
+  //包名
+  private PackageDeclaration packageDec;
 
-  //依赖DTO类型
-  public Set<String> depDtos = Sets.newConcurrentHashSet();
+  //引入包
+  private ImportDeclaration importDec;
 
-  //父类
-  public List<String> parents = Lists.newArrayList();
+  //接口或类实体
+  private ClassOrInterfaceDeclaration classOrInterfaceDec;
 
-  //接口
-  public Set<String> interfazzs = Sets.newConcurrentHashSet();
+  //字段
+  private FieldDeclaration fieldDec;
 
-  //字段列表
-  //    public List<Field> fields = Lists.newArrayList();
+  //方法
+  private MethodDeclaration methodDec;
 
-  //方法列表
-  //    public List<Method> methods = Lists.newArrayList();
+  public boolean isInterface() {
+    return isInterface;
+  }
+
+  public void setInterface(boolean anInterface) {
+    isInterface = anInterface;
+  }
+
+  public boolean isEnum() {
+    return isEnum;
+  }
+
+  public void setEnum(boolean anEnum) {
+    isEnum = anEnum;
+  }
+
+  public EnumConstantDeclaration getEnumConstantDec() {
+    return enumConstantDec;
+  }
+
+  public void setEnumConstantDec(EnumConstantDeclaration enumConstantDec) {
+    this.enumConstantDec = enumConstantDec;
+  }
+
+  public EnumDeclaration getEnumDec() {
+    return enumDec;
+  }
+
+  public void setEnumDec(EnumDeclaration enumDec) {
+    this.enumDec = enumDec;
+  }
+
+  public PackageDeclaration getPackageDec() {
+    return packageDec;
+  }
+
+  public void setPackageDec(PackageDeclaration packageDec) {
+    this.packageDec = packageDec;
+  }
+
+  public ImportDeclaration getImportDec() {
+    return importDec;
+  }
+
+  public void setImportDec(ImportDeclaration importDec) {
+    this.importDec = importDec;
+  }
+
+  public ClassOrInterfaceDeclaration getClassOrInterfaceDec() {
+    return classOrInterfaceDec;
+  }
+
+  public void setClassOrInterfaceDec(ClassOrInterfaceDeclaration classOrInterfaceDec) {
+    this.classOrInterfaceDec = classOrInterfaceDec;
+  }
+
+  public FieldDeclaration getFieldDec() {
+    return fieldDec;
+  }
+
+  public void setFieldDec(FieldDeclaration fieldDec) {
+    this.fieldDec = fieldDec;
+  }
+
+  public MethodDeclaration getMethodDec() {
+    return methodDec;
+  }
+
+  public void setMethodDec(MethodDeclaration methodDec) {
+    this.methodDec = methodDec;
+  }
+
+  @Override
+  public String toString() {
+    return "JavaBody{" +
+        "isInterface=" + isInterface +
+        ", isEnum=" + isEnum +
+        ", enumConstantDec=" + enumConstantDec +
+        ", enumDec=" + enumDec +
+        ", packageDec=" + packageDec +
+        ", importDec=" + importDec +
+        ", classOrInterfaceDec=" + classOrInterfaceDec +
+        ", fieldDec=" + fieldDec +
+        ", methodDec=" + methodDec +
+        '}';
+  }
 }

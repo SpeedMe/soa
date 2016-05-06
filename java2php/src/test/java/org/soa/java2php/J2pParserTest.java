@@ -18,12 +18,28 @@ import static org.junit.Assert.*;
  * @date: 2016-05-06 2:50 PM
  */
 public class J2pParserTest {
-    @Test
-    public void testEnumParser() throws Exception{
-        System.out.println(Thread.currentThread().getContextClassLoader().getResource("").getPath());
-        String enumPath = "/Users/huanglei/Projects/github/soa/java2php" +
-                "/src/test/java/org/soa/java2php/samples/java/EnumParaserSample.java";
+  @Test
+  public void testEnumParser() throws Exception {
+    String enumPath = "/Users/huanglei/Projects/github/soa/java2php" +
+        "/src/test/java/org/soa/java2php/samples/java/EnumParaserSample.java";
 
-        new J2pParser(enumPath);
-    }
+    new J2pParser(enumPath).parse2php("");
+  }
+
+  @Test
+  public void testInterfaceParser() throws Exception {
+    String interfacePath = "/Users/huanglei/Projects/github/soa/java2php" +
+        "/src/test/java/org/soa/java2php/samples/java/InterfaceParaserSample.java";
+
+    new J2pParser(interfacePath).parse2php("");
+
+  }
+
+  @Test
+  public void testRequestPaser() throws Exception {
+    String requestPath = "/Users/huanglei/Projects/github/soa/java2php" +
+        "/src/test/java/org/soa/java2php/samples/java/RequestParaserSample.java";
+
+    new J2pParser(requestPath).parse2php("");
+  }
 }
