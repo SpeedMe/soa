@@ -47,6 +47,10 @@ public class J2pParser {
     new MethodVisitor().visit(cu, null);
   }
 
+  /**
+   * 解析成php代码
+   * @param toPath
+   */
   public void parse2php(final String toPath) {
     log.info(jb.toString());
   }
@@ -87,8 +91,6 @@ public class J2pParser {
   class PackageVisitor extends VoidVisitorAdapter {
     @Override
     public void visit(final PackageDeclaration dec, final Object arg) {
-      log.info("package name:{}", dec.getPackageName());
-
       jb.setPackageDec(dec);
 
       super.visit(dec, arg);
@@ -101,8 +103,6 @@ public class J2pParser {
   class ImportVisitor extends VoidVisitorAdapter {
     @Override
     public void visit(ImportDeclaration dec, Object arg) {
-      log.info("import name:{}", dec.getName());
-
       jb.setImportDec(dec);
 
       super.visit(dec, arg);
@@ -116,8 +116,6 @@ public class J2pParser {
 
     @Override
     public void visit(final EnumConstantDeclaration dec, final Object arg) {
-      log.info("enum constant name:{}", dec.getName());
-
       jb.setEnum(true);
       jb.setEnumConstantDec(dec);
 
@@ -126,8 +124,6 @@ public class J2pParser {
 
     @Override
     public void visit(final EnumDeclaration dec, final Object arg) {
-      log.info("enum name:{}", dec.getName());
-
       jb.setEnum(true);
       jb.setEnumDec(dec);
 
@@ -141,12 +137,6 @@ public class J2pParser {
   class ClassOrInterfaceVisitor extends VoidVisitorAdapter {
     @Override
     public void visit(final ClassOrInterfaceDeclaration dec, final Object arg) {
-      log.info("interface name:{}", dec.getName());
-      log.info("implements name:{}", dec.getImplements());
-      log.info("extends:{}", dec.getExtends());
-      log.info("top comment:{}", dec.getComment());
-      log.info("modifiers:{}", dec.getModifiers());
-
       jb.setInterface(dec.isInterface());
       jb.setClassOrInterfaceDec(dec);
 
@@ -160,9 +150,6 @@ public class J2pParser {
   class FieldVisitor extends VoidVisitorAdapter {
     @Override
     public void visit(final FieldDeclaration dec, final Object arg) {
-      log.info("variables type:{}", dec.getType());
-      log.info("variables:{}", dec.getVariables());
-
       jb.setFieldDec(dec);
 
       super.visit(dec, arg);
@@ -175,11 +162,6 @@ public class J2pParser {
   class MethodVisitor extends VoidVisitorAdapter {
     @Override
     public void visit(final MethodDeclaration dec, final Object arg) {
-      log.info("method name:{}", dec.getName());
-      log.info("parameters:{}", dec.getParameters());
-      log.info("doc comment:{}", dec.getComment());
-      log.info("throws:{}", dec.getThrows());
-
       jb.setMethodDec(dec);
 
       super.visit(dec, arg);
