@@ -50,121 +50,184 @@ public class SimpleLogger implements Logger {
     return sdf.format(new Date());
   }
 
+  /**
+   * trace.
+   */
   public void trace(String message) {
-    if (level <= Level.TRACE)
+    if (level <= Level.TRACE) {
       log(Level.TRACE, message);
+    }
   }
 
+  /**
+   * trace.
+   */
   public void trace(String message, Object... args) {
-    if (level <= Level.TRACE)
+    if (level <= Level.TRACE) {
       log(Level.TRACE, message, args);
+    }
   }
 
-  public void trace(String message, Throwable t) {
-    if (level <= Level.TRACE)
-      log(Level.TRACE, message, t);
+  /**
+   * trace.
+   */
+  public void trace(String message, Throwable tw) {
+    if (level <= Level.TRACE) {
+      log(Level.TRACE, message, tw);
+    }
   }
 
-
-  public void trace(String message, Throwable t, Object... args) {
-    if (level <= Level.TRACE)
-      log(Level.TRACE, message, t, args);
+  /**
+   * trace.
+   */
+  public void trace(String message, Throwable tw, Object... args) {
+    if (level <= Level.TRACE) {
+      log(Level.TRACE, message, tw, args);
+    }
   }
 
-
+  /**
+   * debug.
+   */
   public void debug(String message) {
-    if (level <= Level.DEBUG)
+    if (level <= Level.DEBUG) {
       log(Level.DEBUG, message);
+    }
   }
 
-
+  /**
+   * debug.
+   */
   public void debug(String message, Object... args) {
-    if (level <= Level.DEBUG)
+    if (level <= Level.DEBUG) {
       log(Level.DEBUG, message, args);
+    }
   }
 
-
-  public void debug(String message, Throwable t) {
-    if (level <= Level.DEBUG)
-      log(Level.DEBUG, message, t);
+  /**
+   * debug.
+   */
+  public void debug(String message, Throwable tw) {
+    if (level <= Level.DEBUG) {
+      log(Level.DEBUG, message, tw);
+    }
   }
 
-
-  public void debug(String message, Throwable t, Object... args) {
-    if (level <= Level.DEBUG)
-      log(Level.DEBUG, message, t, args);
+  /**
+   * debug.
+   */
+  public void debug(String message, Throwable tw, Object... args) {
+    if (level <= Level.DEBUG) {
+      log(Level.DEBUG, message, tw, args);
+    }
   }
 
-
+  /**
+   * info.
+   */
   public void info(String message) {
-    if (level <= Level.INFO)
+    if (level <= Level.INFO) {
       log(Level.INFO, message);
+    }
   }
 
-
+  /**
+   * info.
+   */
   public void info(String message, Object... args) {
-    if (level <= Level.INFO)
+    if (level <= Level.INFO) {
       log(Level.INFO, message, args);
+    }
   }
 
-
-  public void info(String message, Throwable t) {
-    if (level <= Level.INFO)
-      log(Level.INFO, message, t);
+  /**
+   * info.
+   */
+  public void info(String message, Throwable tw) {
+    if (level <= Level.INFO) {
+      log(Level.INFO, message, tw);
+    }
   }
 
-
-  public void info(String message, Throwable t, Object... args) {
-    if (level <= Level.INFO)
-      log(Level.INFO, message, t, args);
+  /**
+   * info.
+   */
+  public void info(String message, Throwable tw, Object... args) {
+    if (level <= Level.INFO) {
+      log(Level.INFO, message, tw, args);
+    }
   }
 
-
+  /**
+   * warn.
+   */
   public void warn(String message) {
-    if (level <= Level.WARN)
+    if (level <= Level.WARN) {
       log(Level.WARN, message);
+    }
   }
 
-
+  /**
+   * warn.
+   */
   public void warn(String message, Object... args) {
-    if (level <= Level.WARN)
+    if (level <= Level.WARN) {
       log(Level.WARN, message, args);
+    }
   }
 
-
-  public void warn(String message, Throwable t) {
-    if (level <= Level.WARN)
-      log(Level.WARN, message, t);
+  /**
+   * warn.
+   */
+  public void warn(String message, Throwable tw) {
+    if (level <= Level.WARN) {
+      log(Level.WARN, message, tw);
+    }
   }
 
-
-  public void warn(String message, Throwable t, Object... args) {
-    if (level <= Level.WARN)
-      log(Level.WARN, message, t, args);
+  /**
+   * warn.
+   */
+  public void warn(String message, Throwable tw, Object... args) {
+    if (level <= Level.WARN) {
+      log(Level.WARN, message, tw, args);
+    }
   }
 
-
+  /**
+   * error.
+   */
   public void error(String message) {
-    if (level <= Level.ERROR)
+    if (level <= Level.ERROR) {
       log(Level.ERROR, message);
+    }
   }
 
-
+  /**
+   * error.
+   */
   public void error(String message, Object... args) {
-    if (level <= Level.ERROR)
+    if (level <= Level.ERROR) {
       log(Level.ERROR, message, args);
+    }
   }
 
-
-  public void error(String message, Throwable t) {
-    if (level <= Level.ERROR)
-      log(Level.ERROR, message, t);
+  /**
+   * error.
+   */
+  public void error(String message, Throwable tw) {
+    if (level <= Level.ERROR) {
+      log(Level.ERROR, message, tw);
+    }
   }
 
-
-  public void error(String message, Throwable t, Object... args) {
-    if (level <= Level.ERROR)
-      log(Level.ERROR, message, t, args);
+  /**
+   * error.
+   */
+  public void error(String message, Throwable tw, Object... args) {
+    if (level <= Level.ERROR) {
+      log(Level.ERROR, message, tw, args);
+    }
   }
 
   public boolean isDebugEnabled() {
@@ -183,11 +246,17 @@ public class SimpleLogger implements Logger {
     return level <= Level.WARN;
   }
 
+  /**
+   * log.
+   */
   public void log(int level, String message, Object... args) {
     log(level, message, null, args);
   }
 
-  public void log(int level, String message, Throwable t, Object... args) {
+  /**
+   * log.
+   */
+  public void log(int level, String message, Throwable tw, Object... args) {
 
     StringBuilder sb = new StringBuilder(now());
     sb.append(" ").append(getLevel(level)).append(" ");
@@ -196,8 +265,8 @@ public class SimpleLogger implements Logger {
     sb.append(format(message, args));
 
     outprint.println(sb.toString());
-    if (t != null) {
-      t.printStackTrace(System.err);
+    if (tw != null) {
+      tw.printStackTrace(System.err);
       System.err.flush();
     }
   }

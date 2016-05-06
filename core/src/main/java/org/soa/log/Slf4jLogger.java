@@ -12,7 +12,8 @@ public class Slf4jLogger implements Logger {
   private final org.slf4j.Logger logger;
 
   static {
-    PropertyConfigurator.configure(Slf4jLogger.class.getResource("").getPath() + "config/log4j.properties");
+    PropertyConfigurator.configure(Slf4jLogger.class.getResource("").getPath()
+        + "config/log4j.properties");
   }
 
   public Slf4jLogger(org.slf4j.Logger logger) {

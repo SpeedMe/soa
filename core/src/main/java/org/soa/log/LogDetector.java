@@ -9,11 +9,14 @@ package org.soa.log;
 public class LogDetector {
   private static final String SLF4_CLASS_NAME = "org.slf4j.Logger";
 
+  /**
+   * 是否存在此日志框架.
+   */
   public static boolean hasLog(String logClassName) {
     try {
       Class.forName(logClassName);
       return true;
-    } catch (ClassNotFoundException e) {
+    } catch (ClassNotFoundException ex) {
       return false;
     }
   }

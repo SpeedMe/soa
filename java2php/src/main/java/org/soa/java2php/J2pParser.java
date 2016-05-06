@@ -48,8 +48,7 @@ public class J2pParser {
   }
 
   /**
-   * 解析成php代码
-   * @param toPath
+   * 解析成php代码.
    */
   public void parse2php(final String toPath) {
     log.info(jb.toString());
@@ -132,7 +131,7 @@ public class J2pParser {
   }
 
   /**
-   * 类和接口Visitor
+   * 类和接口Visitor.
    */
   class ClassOrInterfaceVisitor extends VoidVisitorAdapter {
     @Override

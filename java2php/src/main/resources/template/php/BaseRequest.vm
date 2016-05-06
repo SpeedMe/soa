@@ -17,6 +17,6 @@ class BaseRequest{
      */
     function setRequestId($request_id) {
        $this->sid = $request_id;
-    }
+}
 
 }

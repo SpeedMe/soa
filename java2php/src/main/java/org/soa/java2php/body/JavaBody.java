@@ -1,8 +1,5 @@
 package org.soa.java2php.body;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-
 import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
@@ -10,9 +7,6 @@ import com.github.javaparser.ast.body.EnumConstantDeclaration;
 import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * JavaBody.
@@ -122,16 +116,16 @@ public class JavaBody {
 
   @Override
   public String toString() {
-    return "JavaBody{" +
-        "isInterface=" + isInterface +
-        ", isEnum=" + isEnum +
-        ", enumConstantDec=" + enumConstantDec +
-        ", enumDec=" + enumDec +
-        ", packageDec=" + packageDec +
-        ", importDec=" + importDec +
-        ", classOrInterfaceDec=" + classOrInterfaceDec +
-        ", fieldDec=" + fieldDec +
-        ", methodDec=" + methodDec +
-        '}';
+    return "JavaBody{"
+        + "isInterface=" + isInterface
+        + ", isEnum=" + isEnum
+        + ", enumConstantDec=" + enumConstantDec
+        + ", enumDec=" + enumDec
+        + ", packageDec=" + packageDec
+        + ", importDec=" + importDec
+        + ", classOrInterfaceDec=" + classOrInterfaceDec
+        + ", fieldDec=" + fieldDec
+        + ", methodDec=" + methodDec
+        + '}';
   }
 }
