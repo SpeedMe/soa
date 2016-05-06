@@ -1,9 +1,10 @@
 package org.soa.java2php.samples.java;
 
-import org.soa.java2php.samples.java.base.BaseResult;
+
+import org.soa.dto.BaseResult;
 
 /**
- * @description:
+ * @description: 基础响应实体样例
  * @author: HuangLei
  * @date: 2016-05-05 8:48 PM
  */

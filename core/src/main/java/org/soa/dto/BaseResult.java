@@ -1,4 +1,4 @@
-package org.soa.java2php.samples.java.base;
+package org.soa.dto;
 
 import java.io.Serializable;
 

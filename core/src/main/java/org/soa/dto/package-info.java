@@ -3,4 +3,4 @@
  * @author: HuangLei
  * @date: 2016-05-05 8:58 PM
  */
-package org.soa.api;
+package org.soa.dto;
