@@ -7,7 +7,13 @@ package org.soa.java2php.samples.java;
  * @date: 2016-05-05 8:12 PM
  */
 public enum EnumParaserSample {
+  /**
+   * hello
+   */
   HELLO("1", "hello"),
+  /**
+   * world
+   */
   WORLD("2", "world");
 
   private String code;

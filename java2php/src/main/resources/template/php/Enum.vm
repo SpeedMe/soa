@@ -1,0 +1,22 @@
+<?php
+/**
+ * created by java2php at ${date}
+ */
+namespace ${namespace}
+#if (${enum.getComment()})
+/**${enum.getComment().getContent()}*/
+#end
+final class ${enum.getName()} {
+#foreach ($enumConstant in ${enumConstants})
+    #if (${enumConstant.getComment()})
+    /**${enumConstant.getComment().getContent()}*/
+    #end
+    const $enumConstant.getName() = $enumConstant.getArgs().get(0);
+#end
+
+    static public $__names = array(
+    #foreach ($enumConstant in ${enumConstants})
+        const $enumConstant.getArgs().get(0) = $enumConstant.getArgs().get(1),
+    #end
+);
+}

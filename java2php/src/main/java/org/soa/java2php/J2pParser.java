@@ -13,6 +13,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 import org.soa.java2php.body.JavaBody;
+import org.soa.java2php.template.VelocityTemplate;
 import org.soa.log.Logger;
 import org.soa.log.LoggerFactory;
 
@@ -50,8 +51,8 @@ public class J2pParser {
   /**
    * 解析成php代码.
    */
-  public void parse2php(final String toPath) {
-    log.info(jb.toString());
+  public void parse2php(final String toPath) throws IOException {
+    new VelocityTemplate(jb).writeFile(toPath);
   }
 
   /**
@@ -102,8 +103,7 @@ public class J2pParser {
   class ImportVisitor extends VoidVisitorAdapter {
     @Override
     public void visit(ImportDeclaration dec, Object arg) {
-      jb.setImportDec(dec);
-
+      jb.getImports().add(dec);
       super.visit(dec, arg);
     }
   }
@@ -116,7 +116,7 @@ public class J2pParser {
     @Override
     public void visit(final EnumConstantDeclaration dec, final Object arg) {
       jb.setEnum(true);
-      jb.setEnumConstantDec(dec);
+      jb.getEnumConstants().add(dec);
 
       super.visit(dec, arg);
     }
@@ -149,7 +149,7 @@ public class J2pParser {
   class FieldVisitor extends VoidVisitorAdapter {
     @Override
     public void visit(final FieldDeclaration dec, final Object arg) {
-      jb.setFieldDec(dec);
+      jb.getFields().add(dec);
 
       super.visit(dec, arg);
     }
@@ -161,7 +161,7 @@ public class J2pParser {
   class MethodVisitor extends VoidVisitorAdapter {
     @Override
     public void visit(final MethodDeclaration dec, final Object arg) {
-      jb.setMethodDec(dec);
+      jb.getMethods().add(dec);
 
       super.visit(dec, arg);
     }

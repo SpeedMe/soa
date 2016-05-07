@@ -18,12 +18,13 @@ import static org.junit.Assert.*;
  * @date: 2016-05-06 2:50 PM
  */
 public class J2pParserTest {
+  private String phpPath = "/Users/huanglei/Projects/github/soa/java2php/src/test/java/org/soa/java2php/samples/php";
   @Test
   public void testEnumParser() throws Exception {
     String enumPath = "/Users/huanglei/Projects/github/soa/java2php" +
         "/src/test/java/org/soa/java2php/samples/java/EnumParaserSample.java";
 
-    new J2pParser(enumPath).parse2php("");
+    new J2pParser(enumPath).parse2php(phpPath);
   }
 
   @Test
@@ -31,7 +32,7 @@ public class J2pParserTest {
     String interfacePath = "/Users/huanglei/Projects/github/soa/java2php" +
         "/src/test/java/org/soa/java2php/samples/java/InterfaceParaserSample.java";
 
-    new J2pParser(interfacePath).parse2php("");
+    new J2pParser(interfacePath).parse2php(phpPath);
 
   }
 
@@ -40,6 +41,6 @@ public class J2pParserTest {
     String requestPath = "/Users/huanglei/Projects/github/soa/java2php" +
         "/src/test/java/org/soa/java2php/samples/java/RequestParaserSample.java";
 
-    new J2pParser(requestPath).parse2php("");
+    new J2pParser(requestPath).parse2php(phpPath);
   }
 }

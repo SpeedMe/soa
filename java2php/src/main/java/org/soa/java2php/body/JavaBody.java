@@ -1,5 +1,7 @@
 package org.soa.java2php.body;
 
+import com.google.common.collect.Lists;
+
 import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
@@ -7,6 +9,8 @@ import com.github.javaparser.ast.body.EnumConstantDeclaration;
 import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+
+import java.util.List;
 
 /**
  * JavaBody.
@@ -22,7 +26,7 @@ public class JavaBody {
   private boolean isEnum;
 
   //enum 常量
-  private EnumConstantDeclaration enumConstantDec;
+  private List<EnumConstantDeclaration> enumConstants = Lists.newArrayList();
 
   //enum
   private EnumDeclaration enumDec;
@@ -31,16 +35,16 @@ public class JavaBody {
   private PackageDeclaration packageDec;
 
   //引入包
-  private ImportDeclaration importDec;
+  private List<ImportDeclaration> imports = Lists.newArrayList();
 
   //接口或类实体
   private ClassOrInterfaceDeclaration classOrInterfaceDec;
 
   //字段
-  private FieldDeclaration fieldDec;
+  private List<FieldDeclaration> fields = Lists.newArrayList();
 
   //方法
-  private MethodDeclaration methodDec;
+  private List<MethodDeclaration> methods = Lists.newArrayList();
 
   public boolean isInterface() {
     return isInterface;
@@ -58,12 +62,12 @@ public class JavaBody {
     isEnum = anEnum;
   }
 
-  public EnumConstantDeclaration getEnumConstantDec() {
-    return enumConstantDec;
+  public List<EnumConstantDeclaration> getEnumConstants() {
+    return enumConstants;
   }
 
-  public void setEnumConstantDec(EnumConstantDeclaration enumConstantDec) {
-    this.enumConstantDec = enumConstantDec;
+  public void setEnumConstants(List<EnumConstantDeclaration> enumConstants) {
+    this.enumConstants = enumConstants;
   }
 
   public EnumDeclaration getEnumDec() {
@@ -82,12 +86,12 @@ public class JavaBody {
     this.packageDec = packageDec;
   }
 
-  public ImportDeclaration getImportDec() {
-    return importDec;
+  public List<ImportDeclaration> getImports() {
+    return imports;
   }
 
-  public void setImportDec(ImportDeclaration importDec) {
-    this.importDec = importDec;
+  public void setImports(List<ImportDeclaration> imports) {
+    this.imports = imports;
   }
 
   public ClassOrInterfaceDeclaration getClassOrInterfaceDec() {
@@ -98,34 +102,19 @@ public class JavaBody {
     this.classOrInterfaceDec = classOrInterfaceDec;
   }
 
-  public FieldDeclaration getFieldDec() {
-    return fieldDec;
+  public List<FieldDeclaration> getFields() {
+    return fields;
   }
 
-  public void setFieldDec(FieldDeclaration fieldDec) {
-    this.fieldDec = fieldDec;
+  public void setFields(List<FieldDeclaration> fields) {
+    this.fields = fields;
   }
 
-  public MethodDeclaration getMethodDec() {
-    return methodDec;
+  public List<MethodDeclaration> getMethods() {
+    return methods;
   }
 
-  public void setMethodDec(MethodDeclaration methodDec) {
-    this.methodDec = methodDec;
-  }
-
-  @Override
-  public String toString() {
-    return "JavaBody{"
-        + "isInterface=" + isInterface
-        + ", isEnum=" + isEnum
-        + ", enumConstantDec=" + enumConstantDec
-        + ", enumDec=" + enumDec
-        + ", packageDec=" + packageDec
-        + ", importDec=" + importDec
-        + ", classOrInterfaceDec=" + classOrInterfaceDec
-        + ", fieldDec=" + fieldDec
-        + ", methodDec=" + methodDec
-        + '}';
+  public void setMethods(List<MethodDeclaration> methods) {
+    this.methods = methods;
   }
 }

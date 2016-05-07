@@ -1,5 +1,7 @@
 package org.soa.java2php.template;
 
+import com.alibaba.fastjson.JSONObject;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -7,6 +9,9 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.soa.java2php.body.JavaBody;
+import org.soa.java2php.converter.DtoConverter;
+import org.soa.java2php.converter.EnumConverter;
+import org.soa.java2php.converter.InterfaceConverter;
 import org.soa.log.Logger;
 import org.soa.log.LoggerFactory;
 
@@ -24,25 +29,34 @@ import java.io.StringWriter;
 public class VelocityTemplate {
   private Logger log = LoggerFactory.getLogger(VelocityTemplate.class);
 
-  private String toPath;
   private String packageName;
   private String className;
+
+  private Template template;
+  private VelocityContext ctx;
 
   /**
    * 构造函数.
    */
-  public VelocityTemplate(JavaBody jb, TemplateType type) {
+  public VelocityTemplate(JavaBody jb) {
+    log.info("parser javabody:{}", jb.getEnumConstants().get(0).getComment().getContent());
+
     VelocityEngine ve = init();
-    Template template = ve.getTemplate(type.getPath());
-    VelocityContext ctx = new VelocityContext();
+    packageName = jb.getPackageDec().getPackageName();
+    if (jb.isEnum()) {
+      template = ve.getTemplate(TemplateType.ENUM.getPath());
+      ctx = new EnumConverter(jb).convert();
+      className = jb.getEnumDec().getName();
 
-    //TODO 此处开始
-    ctx.put("namespace", "");
+    } else if (jb.isInterface()) {
+      template = ve.getTemplate(TemplateType.INTERFACE.getPath());
+      ctx = new InterfaceConverter(jb).convert();
+      className = jb.getClassOrInterfaceDec().getName();
 
-    try {
-      writeFile(template, ctx);
-    } catch (IOException ex) {
-      log.error("写入velocity模板失败:", ex);
+    } else {
+      template = ve.getTemplate(TemplateType.DTO.getPath());
+      ctx = new DtoConverter(jb).convert();
+      className = jb.getClassOrInterfaceDec().getName();
     }
   }
 
@@ -62,11 +76,11 @@ public class VelocityTemplate {
   /**
    * 写入php文件.
    *
-   * @param template 模板
-   * @param ctx      velocity内容
    * @throws IOException io异常
    */
-  private void writeFile(Template template, VelocityContext ctx) throws IOException {
+  public void writeFile(String toPath) throws IOException {
+    log.info("export path:{}", toPath);
+
     StringWriter sw = new StringWriter();
     template.merge(ctx, sw);
 
