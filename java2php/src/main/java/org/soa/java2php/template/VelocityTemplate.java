@@ -39,7 +39,7 @@ public class VelocityTemplate {
    * 构造函数.
    */
   public VelocityTemplate(JavaBody jb) {
-    log.info("parser javabody:{}", jb.getEnumConstants().get(0).getComment().getContent());
+    log.info("parser javabody:{}", jb.getMethods().get(0).getComment());
 
     VelocityEngine ve = init();
     packageName = jb.getPackageDec().getPackageName();

@@ -27,16 +27,16 @@ public class InterfaceConverter extends CodeConverter {
 
   @Override
   public void convertClassOrInterface(ClassOrInterfaceDeclaration dec) {
-
+    vc.put("interface", dec);
   }
 
   @Override
   public void convertField(List<FieldDeclaration> dec) {
-
+    vc.put("fields", dec);
   }
 
   @Override
   public void convertMethod(List<MethodDeclaration> dec) {
-
+    vc.put("methods", dec);
   }
 }

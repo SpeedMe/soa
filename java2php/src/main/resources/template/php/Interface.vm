@@ -1,74 +1,21 @@
 <?php
-
+/**
+ *  Created by java2php on ${date}.
+ */
 namespace com\zhubajie\riskcontrol\api\service\order;
 
 #foreach ($use in ${uses})##
 use $use.getName();
 #end##
 
-/**
-*  Created by codeconverter on 2016/05/05.
-*/
-class OrderService extends clientv2\service\Client
-{
-    const CLIENT_ZK_SERVICE_KEY = 'com.zhubajie.riskcontrol.api.service.order.OrderService';
 
-    /**
-     * OrderService constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct(self::CLIENT_ZK_SERVICE_KEY);
-    }
+interface ${interface.getName()} {
 
-/**
-*
-	 * 交易退款/取消风控
-	 * 	 * 	 *
-* @param OrderRefundRequest $request;
-* @return mixed
-* @throws InvalidParamException
-* @throws clientv2\exception\BaseClientException
-*/
-public function refundRiskControl(OrderRefundRequest $request)
-{
-                        //param obj
-            if ($request instanceof OrderRefundRequest === false) {
-            throw new InvalidParamException('param type error');
-            }
-
-    $request->setRequestId($this->zGetRequestId());
-
-$this_method_arguments = array($request);
-
-return $this->issueClientCall(__FUNCTION__, $this_method_arguments);
-}
-
-/**
-*
-* 触发风控重新检查结果
-*     *     *
-* @param int $riskId;
-* @return mixed
-* @throws InvalidParamException
-* @throws clientv2\exception\BaseClientException
-*/
-public function triggerCheck( $riskId)
-{
-//param int
-if (ctype_digit((string)$riskId) === false) {
-throw new InvalidParamException('param type error');
-} else {
-$riskId = (int)$riskId;
-}
-
-
-$riskId->setRequestId($this->zGetRequestId());
-
-$this_method_arguments = array($riskId);
-
-return $this->issueClientCall(__FUNCTION__, $this_method_arguments);
-}
-
+#foreach($method in $methods)
+#if(${method.getComment()})
+/**${method.getComment().getContent()}*/
+#end
+public function ${method.getName}($)
+#end
 
 }

@@ -24,6 +24,9 @@ public abstract class CodeConverter {
   private JavaBody jb;
   protected VelocityContext vc;
 
+  /**
+   * 构造器.
+   */
   public CodeConverter(JavaBody jb) {
     this.jb = jb;
     vc = new VelocityContext();
