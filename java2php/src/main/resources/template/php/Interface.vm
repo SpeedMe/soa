@@ -7,15 +7,16 @@ namespace com\zhubajie\riskcontrol\api\service\order;
 #foreach ($use in ${uses})##
 use $use.getName();
 #end##
-
-
+/**${interface.getComment().getContent()}*/
 interface ${interface.getName()} {
-
 #foreach($method in $methods)
 #if(${method.getComment()})
-/**${method.getComment().getContent()}*/
+/**${method.getComment().getContent()}* ${method.getDeclarationAsString()}
+*/
 #end
-public function ${method.getName}($)
+#set($flagIndex = 0)
+#set($parameterSize = ${method.getParameters().size()})
+public function ${method.getName()}(#foreach($parameter in ${method.getParameters()})$$parameter.getChildrenNodes().get(0).toString()#set($flagIndex = $flagIndex + 1)#if($flagIndex != $parameterSize),#end#end)
 #end
 
 }

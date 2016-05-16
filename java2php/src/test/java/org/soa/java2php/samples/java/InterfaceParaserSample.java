@@ -14,7 +14,7 @@ public interface InterfaceParaserSample {
    * @param description 描述
    * @return 字符串
    */
-  String getHello(Integer code, Integer description);
+  String getHello(final Integer code, final Integer description);
 
   /**
    * 获取world.

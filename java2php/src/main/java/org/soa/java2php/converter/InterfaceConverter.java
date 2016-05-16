@@ -1,5 +1,6 @@
 package org.soa.java2php.converter;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
@@ -37,6 +38,7 @@ public class InterfaceConverter extends CodeConverter {
 
   @Override
   public void convertMethod(List<MethodDeclaration> dec) {
+    System.out.println(JSONObject.toJSONString(dec.get(0).getDeclarationAsString()));
     vc.put("methods", dec);
   }
 }

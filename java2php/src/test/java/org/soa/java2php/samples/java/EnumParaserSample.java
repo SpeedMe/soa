@@ -8,11 +8,11 @@ package org.soa.java2php.samples.java;
  */
 public enum EnumParaserSample {
   /**
-   * hello
+   * hello 枚举类型
    */
   HELLO("1", "hello"),
   /**
-   * world
+   * world 枚举类型
    */
   WORLD("2", "world");
 
